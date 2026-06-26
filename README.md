@@ -441,22 +441,43 @@ The dashboard has **zero build dependencies** — no Node.js, no webpack, no Rea
 
 ### Option 1: Open directly in browser (simplest)
 
-```bash
-# Just open the file in Chrome, Firefox, or Safari
-open dashboard/index.html
-```
-
 No server required. All data is embedded in the HTML file.
+
+```bash
+# macOS
+open dashboard/index.html
+
+# Windows
+start dashboard\index.html
+
+# Linux
+xdg-open dashboard/index.html
+```
 
 ### Option 2: Serve with a local HTTP server (recommended for development)
 
 ```bash
-# Python 3 (built-in)
 cd dashboard
-python3 -m http.server 8080
-# Then open http://localhost:8080 in your browser
 
-# OR with Node.js (if installed)
+# Python 3 (built-in) — macOS / Linux
+python3 -m http.server 8081
+
+# Python 3 (built-in) — Windows
+python -m http.server 8081
+
+# Then open http://localhost:8081 in your browser
+```
+
+> **Port note:** Port `8080` is commonly used by other local tools (Docker, proxies, etc.) and may return `ERR_EMPTY_RESPONSE` if already in use. Use `8081` or any free port instead:
+>
+> ```bash
+> python -m http.server 8081   # Windows
+> python3 -m http.server 8081  # macOS / Linux
+> ```
+
+**Node.js alternative (if installed):**
+
+```bash
 npx serve dashboard
 ```
 
